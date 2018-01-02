@@ -3,10 +3,25 @@
 Introduction
 
 语音识别
+
+
 Installation
 Run npm install --save react-native-kdspeech
 
-替换 android/app/res/values/appid 去官网申请appid
+在application onCreate方法中:
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    SpeechUtility.createUtility(this, "appid=" + getString(R.string.app_id));
+
+  }
+替换自己 app  android/app/res/values/appid 去官网申请appid
+
+AndroidManifest.xml添加权限
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
 import React, {PureComponent} from 'react'
