@@ -1,0 +1,44 @@
+{
+  "_from": "react-native-kdspeech",
+  "_id": "react-native-kdspeech@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-y3M0eGLcxLGOx8zVoYcfdcrcRr0=",
+  "_location": "/react-native-kdspeech",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-native-kdspeech",
+    "name": "react-native-kdspeech",
+    "escapedName": "react-native-kdspeech",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/react-native-kdspeech/download/react-native-kdspeech-0.0.1.tgz",
+  "_shasum": "cb73347862dcc4b18ec7ccd5a1871f75cadc46bd",
+  "_spec": "react-native-kdspeech",
+  "_where": "/Users/xupeng/Documents/app/demo",
+  "author": {
+    "name": "xp"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "1.使用 import  SpeechModule from '../Main/Component/SpeechModule'",
+  "keywords": [
+    "react-native",
+    "speech",
+    "react-native-kdspeech"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-native-kdspeech",
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "0.0.1"
+}
