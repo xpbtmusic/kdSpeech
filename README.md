@@ -1,18 +1,116 @@
 1.使用
-import  SpeechModule from '../Main/Component/SpeechModule'
+
+Introduction
+
+语音识别
+Installation
+Run npm install --save react-native-kdspeech
+
+替换 android/app/res/values/appid 去官网申请appid
 
 
-componentWillMount() {
-//增加语音识别结果回调，返回结果为 字符串。
-SpeechModule.addRecResultCallBack(this.onRecognizeResult)
+import React, {PureComponent} from 'react'
+import {
+    View,
+    Text,
+    Platform,
+    Button,
+    DeviceEventEmitter,
+    PermissionsAndroid
+} from 'react-native'
+//import SpeechModule from './SpeechModule'
+import {SpeechModule} from 'react-native-kdspeech'
+
+class Demo extends PureComponent {
+
+
+    constructor(props: Object) {
+        super(props)
+
+        this.state = {
+            resultText: '',
+            permission: PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        }
+    }
+
+    componentWillMount() {
+
+        SpeechModule.addRecResultCallBack(this.onRecognizeResult)
+
+    }
+
+
+    componentWillUnMount() {
+        SpeechModule.removeRecCallBack(this.onRecognizeResult);
+    }
+
+    onRecognizeResult = (e) => {
+        console.log('result text: ' + e);
+        this.setState({
+            resultText: e,
+        });
+
+    }
+
+
+    onPressButton(title) {
+
+
+    }
+
+
+    _requestPermission = async () => {
+        let result = await PermissionsAndroid.request(
+            this.state.permission
+        );
+        if (result === PermissionsAndroid.RESULTS.GRANTED) {
+            SpeechModule.startSpeech();
+
+        } else {
+            this._requestPermission();
+        }
+    }
+
+    onButtonClick() {
+        if (Platform.OS === 'android') {
+            this._checkPermission();
+        }
+    }
+
+    _checkPermission = async () => {
+        let result = await PermissionsAndroid.check(this.state.permission);
+        if (result === PermissionsAndroid.RESULTS.GRANTED) {
+            SpeechModule.startSpeech();
+        } else {
+            this._requestPermission();
+        }
+    }
+
+    onButtonClick_() {
+        if (Platform.OS === 'android') {
+            SpeechModule.stopSpeech();
+        }
+    }
+
+
+    render() {
+        return (
+
+            <View style={{flex: 1, backgroundColor: 'white'}}>
+
+                <Text style={{flex: 1, backgroundColor: 'white',marginTop:10}}>
+                    识别结果:{this.state.resultText}
+                </Text>
+                <View style={{flex: 1,marginTop:60}}>
+                    <Button title="开启语音识别" onPress={this.onButtonClick.bind(this)}></Button>
+                    <View style={{height:10}}></View>
+                    <Button title="停止语音识别" color="#841584" onPress={this.onButtonClick_.bind(this)}></Button>
+                </View>
+            </View>
+        );
+    }
 
 }
 
-onRecognizeResult = (e)=> {
-console.log('--------'+e);
-}
-
-在点击事件中控制语音状态：
-     SpeechModule.startSpeech();//开启语音识别
-      SpeechModule.stopSpeech();//停止语音识别
+export default Demo;
 
