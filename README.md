@@ -9,7 +9,7 @@ Installation
 Run npm install --save react-native-kdspeech
 
 在application onCreate方法中:
-
+    javaScript
   @Override
   public void onCreate() {
     super.onCreate();
